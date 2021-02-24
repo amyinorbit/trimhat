@@ -1,0 +1,72 @@
+[
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/format.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/format.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/format.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/list.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/list.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/list.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/log.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/log.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/log.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/math.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/math.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/math.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/memory.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/memory.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/memory.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/table.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/table.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/table.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/value.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/value.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/value.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/filesystem.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/filesystem.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/filesystem.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/debug.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/debug.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/debug.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/tpool.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/tpool.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/tpool.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/cfg.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/cfg.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/cfg.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/time.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/time.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/time.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/ccore.dir/includes_C.rsp -m64 -fvisibility=hidden -o CMakeFiles/ccore.dir/src/run_loop.c.obj -c /home/amy/projects/trimhat/deps/ccore/src/run_loop.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/run_loop.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.windows/deps/ccore/demo",
+  "command": "/usr/bin/x86_64-w64-mingw32-gcc  @CMakeFiles/demo.dir/includes_C.rsp -m64 -o CMakeFiles/demo.dir/main.c.obj -c /home/amy/projects/trimhat/deps/ccore/demo/main.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/demo/main.c"
+}
+]

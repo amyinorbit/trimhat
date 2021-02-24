@@ -1,0 +1,2 @@
+/usr/bin/x86_64-w64-mingw32-ar qc libccore.a CMakeFiles/ccore.dir/src/format.c.obj CMakeFiles/ccore.dir/src/list.c.obj CMakeFiles/ccore.dir/src/log.c.obj CMakeFiles/ccore.dir/src/math.c.obj CMakeFiles/ccore.dir/src/memory.c.obj CMakeFiles/ccore.dir/src/table.c.obj CMakeFiles/ccore.dir/src/value.c.obj CMakeFiles/ccore.dir/src/filesystem.c.obj CMakeFiles/ccore.dir/src/debug.c.obj CMakeFiles/ccore.dir/src/tpool.c.obj CMakeFiles/ccore.dir/src/cfg.c.obj CMakeFiles/ccore.dir/src/time.c.obj CMakeFiles/ccore.dir/src/run_loop.c.obj
+/usr/bin/x86_64-w64-mingw32-ranlib libccore.a

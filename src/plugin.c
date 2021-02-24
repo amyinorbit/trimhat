@@ -10,6 +10,7 @@
 #include <XPLMPlugin.h>
 #include <XPLMUtilities.h>
 #include <string.h>
+#include <stdint.h>
 
 enum {
     DIR_UP,
@@ -92,7 +93,7 @@ static void forward_cmd(XPLMCommandPhase phase, XPLMCommandRef cmd) {
 
 static int hat_cb(XPLMCommandRef cmd, XPLMCommandPhase phase, void *refcon) {
     CCUNUSED(cmd);
-    int dir = (int)refcon;
+    intptr_t dir = (intptr_t)refcon;
     
     if(!is_enabled || !is_trimming) return 1;
     
@@ -119,10 +120,10 @@ static int hat_cb(XPLMCommandRef cmd, XPLMCommandPhase phase, void *refcon) {
 }
 
 PLUGIN_API int XPluginStart(char *name, char *signature, char *description) {
-	strcpy(name, "trimhat");
-	strcpy(signature, "com.amyinorbit.trimhat");
-	strcpy(description, "trim your plane using the hat switch");
-	XPLMEnableFeature("XPLM_USE_NATIVE_PATHS", 1);
+    strcpy(name, "trimhat");
+    strcpy(signature, "com.amyinorbit.trimhat");
+    strcpy(description, "trim your plane using the hat switch");
+    XPLMEnableFeature("XPLM_USE_NATIVE_PATHS", 1);
     cc_set_log_name("trimhat");
     cc_set_printer(XPLMDebugString);
     
@@ -148,7 +149,7 @@ PLUGIN_API int XPluginStart(char *name, char *signature, char *description) {
         trim_cmd[i] = find_command(trim_cmd_str[i]);
     }
     
-    for(long int i = 0; i < DIR_COUNT; ++i) {
+    for(intptr_t i = 0; i < DIR_COUNT; ++i) {
         hat_cmd[i] = find_command(hat_cmd_str[i]);
         XPLMRegisterCommandHandler(hat_cmd[i], hat_cb, true, (void *)i);
     }
@@ -165,7 +166,7 @@ PLUGIN_API int XPluginStart(char *name, char *signature, char *description) {
 
 PLUGIN_API void	XPluginStop(void) {
     CCDEBUG("stopping plugin");
-    for(long int i = 0; i < DIR_COUNT; ++i) {
+    for(intptr_t i = 0; i < DIR_COUNT; ++i) {
         XPLMUnregisterCommandHandler(hat_cmd[i], hat_cb, true, (void *)i);
     }
     XPLMUnregisterCommandHandler(hat_enable, enable_cb, true, NULL);

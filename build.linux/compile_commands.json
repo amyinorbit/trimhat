@@ -1,0 +1,72 @@
+[
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/format.c.o -c /home/amy/projects/trimhat/deps/ccore/src/format.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/format.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/list.c.o -c /home/amy/projects/trimhat/deps/ccore/src/list.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/list.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/log.c.o -c /home/amy/projects/trimhat/deps/ccore/src/log.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/log.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/math.c.o -c /home/amy/projects/trimhat/deps/ccore/src/math.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/math.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/memory.c.o -c /home/amy/projects/trimhat/deps/ccore/src/memory.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/memory.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/table.c.o -c /home/amy/projects/trimhat/deps/ccore/src/table.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/table.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/value.c.o -c /home/amy/projects/trimhat/deps/ccore/src/value.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/value.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/filesystem.c.o -c /home/amy/projects/trimhat/deps/ccore/src/filesystem.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/filesystem.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/debug.c.o -c /home/amy/projects/trimhat/deps/ccore/src/debug.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/debug.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/tpool.c.o -c /home/amy/projects/trimhat/deps/ccore/src/tpool.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/tpool.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/cfg.c.o -c /home/amy/projects/trimhat/deps/ccore/src/cfg.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/cfg.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/time.c.o -c /home/amy/projects/trimhat/deps/ccore/src/time.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/time.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include -fPIC -fvisibility=hidden -o CMakeFiles/ccore.dir/src/run_loop.c.o -c /home/amy/projects/trimhat/deps/ccore/src/run_loop.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/src/run_loop.c"
+},
+{
+  "directory": "/home/amy/projects/trimhat/build.linux/deps/ccore/demo",
+  "command": "/usr/bin/cc  -I/home/amy/projects/trimhat/deps/ccore/include  -o CMakeFiles/demo.dir/main.c.o -c /home/amy/projects/trimhat/deps/ccore/demo/main.c",
+  "file": "/home/amy/projects/trimhat/deps/ccore/demo/main.c"
+}
+]
