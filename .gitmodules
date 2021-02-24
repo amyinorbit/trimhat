@@ -1,0 +1,3 @@
+[submodule "deps/ccore"]
+	path = deps/ccore
+	url = git@github.com:amyinorbit/ccore.git
