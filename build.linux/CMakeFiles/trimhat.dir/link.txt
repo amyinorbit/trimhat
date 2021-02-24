@@ -1,1 +1,0 @@
-/usr/bin/cc -fPIC  -fno-stack-protector -shared -Wl,-soname,trimhat.xpl -o ../trimhat/lin_x64/trimhat.xpl CMakeFiles/trimhat.dir/src/plugin.c.o  deps/ccore/libccore.a -lm -lpthread 

@@ -1,3 +1,0 @@
-/usr/local/bin/cmake -E rm -f CMakeFiles/trimhat.dir/objects.a
-/usr/bin/x86_64-w64-mingw32-ar cr CMakeFiles/trimhat.dir/objects.a @CMakeFiles/trimhat.dir/objects1.rsp
-/usr/bin/x86_64-w64-mingw32-gcc -m64  -fno-stack-protector -shared -o ../trimhat/win_x64/trimhat.xpl -Wl,--out-implib,libtrimhat.xpl.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles/trimhat.dir/objects.a -Wl,--no-whole-archive @CMakeFiles/trimhat.dir/linklibs.rsp

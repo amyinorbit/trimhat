@@ -1,1 +1,0 @@
- deps/ccore/libccore.a ../sdk/Libraries/Win/XPLM_64.lib ../sdk/Libraries/Win/XPWidgets_64.lib -lm -lpthread -ldbghelp -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
