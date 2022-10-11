@@ -5,3 +5,5 @@ trimhat
 *.zip
 *.ignore.*
 *.ignore
+notarize/*
+*.plist
