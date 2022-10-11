@@ -111,6 +111,20 @@ static XPLMCommandRef find_command(const char *cmd) {
     return ref;
 }
 
+static void start_trimming() {
+    for(int i = 0; i < 8; ++i) {
+        XPLMCommandEnd(hat_cmd[i]);
+    }
+    is_trimming = true;
+}
+
+static void stop_trimming() {
+    is_trimming = false;
+    for(int i = 0; i < 4; ++i) {
+        XPLMCommandEnd(trim_cmd[i]);
+    }
+}
+
 static int enable_cb(XPLMCommandRef cmd, XPLMCommandPhase phase, void *refcon) {
     UNUSED(cmd);
     UNUSED(refcon);
@@ -123,17 +137,19 @@ static int enable_cb(XPLMCommandRef cmd, XPLMCommandPhase phase, void *refcon) {
     switch(phase) {
     case xplm_CommandBegin:
         // First, make sure we stop any hat view command
-        for(int i = 0; i < 8; ++i) {
-            XPLMCommandEnd(hat_cmd[i]);
+        if(is_reversed) {
+            stop_trimming();
+        } else {
+            start_trimming();
         }
-        is_trimming = true;
         break;
         
     case xplm_CommandEnd:
         // Ensure that we send finishing commands for the trims
-        is_trimming = false;
-        for(int i = 0; i < 4; ++i) {
-            XPLMCommandEnd(trim_cmd[i]);
+        if(is_reversed) {
+            start_trimming();
+        } else {
+            stop_trimming();
         }
         break;
         
@@ -183,6 +199,13 @@ static void update_reverse() {
     if(!is_enabled) return;
     XPLMCheckMenuItem(menu.id, menu.item_rev,
         is_reversed ? xplm_Menu_Checked : xplm_Menu_Unchecked);
+        
+    for(int i = 0; i < 4; ++i) {
+        XPLMCommandEnd(trim_cmd[i]);
+        XPLMCommandEnd(hat_cmd[i]);
+    }
+    
+    is_trimming = is_reversed;
 }
 
 static void handle_menu(void *menu_ref, void *item_ref) {
@@ -239,6 +262,7 @@ PLUGIN_API int XPluginStart(char *name, char *signature, char *description) {
     
     is_trimming = false;
     is_enabled = false;
+    is_reversed = false;
     
     // Create the menu
     // XPLMMenuID plugins = XPLMFindPluginsMenu();
