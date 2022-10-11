@@ -6,11 +6,13 @@
 // Licensed under the MIT License
 // =^•.•^=
 //===--------------------------------------------------------------------------------------------===
-#include <ccore/log.h>
+#include <acfutils/log.h>
+#include <acfutils/assert.h>
 #include <XPLMPlugin.h>
 #include <XPLMUtilities.h>
 #include <string.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 enum {
     DIR_UP,
@@ -35,23 +37,22 @@ bool is_trimming = false;
 #if IBM==1
 #include <windows.h>
 BOOL APIENTRY DllMain( HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
-    CCUNUSED(hModule);
-    CCUNUSED(ul_reason_for_call);
-    CCUNUSED(lpReserved);
+    UNUSED(hModule);
+    UNUSED(ul_reason_for_call);
+    UNUSED(lpReserved);
     return TRUE;
 }
 #endif
 
 static XPLMCommandRef find_command(const char *cmd) {
-    CCDEBUG("finding command `%s`", cmd);
     XPLMCommandRef ref = XPLMFindCommand(cmd);
-    CCASSERT(ref);
+    VERIFY3P(ref, !=, NULL);
     return ref;
 }
 
 static int enable_cb(XPLMCommandRef cmd, XPLMCommandPhase phase, void *refcon) {
-    CCUNUSED(cmd);
-    CCUNUSED(refcon);
+    UNUSED(cmd);
+    UNUSED(refcon);
     
     if(!is_enabled) {
         is_trimming = false;
@@ -61,7 +62,6 @@ static int enable_cb(XPLMCommandRef cmd, XPLMCommandPhase phase, void *refcon) {
     switch(phase) {
     case xplm_CommandBegin:
         // First, make sure we stop any hat view command
-        CCDEBUG("starting trim mode");
         for(int i = 0; i < 8; ++i) {
             XPLMCommandEnd(hat_cmd[i]);
         }
@@ -71,7 +71,6 @@ static int enable_cb(XPLMCommandRef cmd, XPLMCommandPhase phase, void *refcon) {
     case xplm_CommandEnd:
         // Ensure that we send finishing commands for the trims
         is_trimming = false;
-        CCDEBUG("ending trim mode");
         for(int i = 0; i < 4; ++i) {
             XPLMCommandEnd(trim_cmd[i]);
         }
@@ -87,13 +86,13 @@ static void forward_cmd(XPLMCommandPhase phase, XPLMCommandRef cmd) {
     case xplm_CommandBegin: XPLMCommandBegin(cmd); break;
     case xplm_CommandContinue: break;
     case xplm_CommandEnd: XPLMCommandEnd(cmd); break;
-    default: CCWARN("invalid command phase"); break;
+    default: logMsg("invalid command phase"); break;
     }
 }
 
 static int hat_cb(XPLMCommandRef cmd, XPLMCommandPhase phase, void *refcon) {
-    CCUNUSED(cmd);
-    intptr_t dir = (intptr_t)refcon;
+    UNUSED(cmd);
+    int dir = (int)(intptr_t)refcon;
     
     if(!is_enabled || !is_trimming) return 1;
     
@@ -113,7 +112,7 @@ static int hat_cb(XPLMCommandRef cmd, XPLMCommandPhase phase, void *refcon) {
     case DIR_UP_RIGHT:
         break;
     default:
-        CCWARN("invalid direction %d", dir);
+        logMsg("invalid direction %d", dir);
         break;
     }
     return 0;
@@ -124,8 +123,8 @@ PLUGIN_API int XPluginStart(char *name, char *signature, char *description) {
     strcpy(signature, "com.amyinorbit.trimhat");
     strcpy(description, "trim your plane using the hat switch");
     XPLMEnableFeature("XPLM_USE_NATIVE_PATHS", 1);
-    cc_set_log_name("trimhat");
-    cc_set_printer(XPLMDebugString);
+    
+    log_init(XPLMDebugString, "trimhat");
     
     static const char *hat_cmd_str[] = {
         "sim/general/hat_switch_up",
@@ -155,7 +154,7 @@ PLUGIN_API int XPluginStart(char *name, char *signature, char *description) {
     }
     
     hat_enable = XPLMCreateCommand("amyinorbit/trimhat/trim", "hold for pitch/yaw trim");
-    CCASSERT(hat_enable);
+    VERIFY3P(hat_enable, !=, NULL);
     XPLMRegisterCommandHandler(hat_enable, enable_cb, true, NULL);
     
     is_trimming = false;
@@ -165,7 +164,6 @@ PLUGIN_API int XPluginStart(char *name, char *signature, char *description) {
 }
 
 PLUGIN_API void	XPluginStop(void) {
-    CCDEBUG("stopping plugin");
     for(intptr_t i = 0; i < DIR_COUNT; ++i) {
         XPLMUnregisterCommandHandler(hat_cmd[i], hat_cb, true, (void *)i);
     }
@@ -174,17 +172,17 @@ PLUGIN_API void	XPluginStop(void) {
 
 PLUGIN_API int XPluginEnable(void) {
     is_enabled = true;
-    CCINFO("plugin enabled");
+    logMsg("enabled");
 	return 1;
 }
 
 PLUGIN_API void XPluginDisable(void) {
     is_enabled = false;
-    CCINFO("plugin disabled");
+    logMsg("disabled");
 }
 
 PLUGIN_API void XPluginReceiveMessage(XPLMPluginID id, intptr_t inMessage, void * inParam) {
-    CCUNUSED(id);
-    CCUNUSED(inParam);
-    CCUNUSED(inMessage);
+    UNUSED(id);
+    UNUSED(inParam);
+    UNUSED(inMessage);
 }
