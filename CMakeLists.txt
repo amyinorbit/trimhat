@@ -26,7 +26,7 @@ add_xplane_plugin(${CMAKE_PROJECT_NAME}
     src/plugin.c
 )
 
-target_compile_features(${CMAKE_PROJECT_NAME} PUBLIC c_std_11 cxx_std_17)
+target_compile_features(${CMAKE_PROJECT_NAME} PUBLIC c_std_11)
 target_compile_options(${CMAKE_PROJECT_NAME} PUBLIC -Wall -Wextra -Werror -fno-exceptions)
 target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC m acfutils xplm xpwidgets)
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE "lib")
