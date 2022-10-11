@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(SET CMP0077 NEW)
 project(trimhat
-    VERSION 1.0.2
+    VERSION 1.1.0
     DESCRIPTION "Trimming Utility for X-Plane"
     HOMEPAGE_URL "https://github.com/amyinorbit/trimhat"
     LANGUAGES C

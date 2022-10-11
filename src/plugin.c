@@ -8,8 +8,11 @@
 //===--------------------------------------------------------------------------------------------===
 #include <acfutils/log.h>
 #include <acfutils/assert.h>
+#include <acfutils/helpers.h>
+#include <acfutils/conf.h>
 #include <XPLMPlugin.h>
 #include <XPLMUtilities.h>
+#include <XPLMMenus.h>
 #include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
@@ -26,12 +29,70 @@ enum {
     DIR_COUNT
 };
 
-XPLMCommandRef hat_enable = NULL;
-XPLMCommandRef trim_cmd[4] = {NULL};
-XPLMCommandRef hat_cmd[DIR_COUNT] = {NULL};
+enum {
+    MENU_REVERSE
+};
 
-bool is_enabled = false;
-bool is_trimming = false;
+#define PLUGIN_SIG  "com.amyinorbit.trimhat"
+#define PLUGIN_NAME "TrimHat"
+#define PLUGIN_DESC "TrimHat by Amy Alex Parent"
+
+static XPLMCommandRef hat_enable = NULL;
+static XPLMCommandRef trim_cmd[4] = {NULL};
+static XPLMCommandRef hat_cmd[DIR_COUNT] = {NULL};
+
+static bool is_reversed = false;
+static bool is_enabled = false;
+static bool is_trimming = false;
+
+static struct {
+    XPLMMenuID  id;
+    int         item_rev;
+} menu;
+
+static char *config_path() {
+    char xplane[1024];
+    XPLMGetSystemPath(xplane);
+#if	IBM
+    fix_pathsep(xplane);
+#endif
+    return mkpathname(xplane, "Output", "preferences", "trimhat.cfg", NULL);
+}
+
+static bool get_b(conf_t *conf, const char *path, bool *out) {
+    bool_t v = B_FALSE;
+    if(!conf_get_b(conf, path, &v)) {
+        return false;
+    }
+    *out = v;
+    return true;
+}
+
+static bool load() {
+    char *path = config_path();
+    conf_t *cfg = conf_read_file(path, NULL);
+    if(!cfg) {
+        free(path);
+        return false;
+    }
+    bool has_data = get_b(cfg, "reverse", &is_reversed);
+    conf_free(cfg);
+    free(path);
+    
+    return has_data;
+}
+
+static void save() {
+    conf_t *cfg = conf_create_empty();
+    conf_set_b(cfg, "reverse", is_reversed);
+    
+    char *path = config_path();
+    if(!conf_write_file(cfg, path)) {
+        logMsg("error writing configuration to `%s'", path);
+    }
+    conf_free(cfg);
+    free(path);
+}
 
 
 #if IBM==1
@@ -118,10 +179,29 @@ static int hat_cb(XPLMCommandRef cmd, XPLMCommandPhase phase, void *refcon) {
     return 0;
 }
 
+static void update_reverse() {
+    if(!is_enabled) return;
+    XPLMCheckMenuItem(menu.id, menu.item_rev,
+        is_reversed ? xplm_Menu_Checked : xplm_Menu_Unchecked);
+}
+
+static void handle_menu(void *menu_ref, void *item_ref) {
+    UNUSED(menu_ref);
+    UNUSED(item_ref);
+    
+    switch((intptr_t)item_ref) {
+    case MENU_REVERSE:
+        is_reversed = !is_reversed;
+        save();
+        update_reverse();
+        break;
+    }
+}
+
 PLUGIN_API int XPluginStart(char *name, char *signature, char *description) {
-    strcpy(name, "trimhat");
-    strcpy(signature, "com.amyinorbit.trimhat");
-    strcpy(description, "trim your plane using the hat switch");
+    strcpy(name, PLUGIN_NAME);
+    strcpy(signature, PLUGIN_SIG);
+    strcpy(description, PLUGIN_DESC);
     XPLMEnableFeature("XPLM_USE_NATIVE_PATHS", 1);
     
     log_init(XPLMDebugString, "trimhat");
@@ -160,6 +240,9 @@ PLUGIN_API int XPluginStart(char *name, char *signature, char *description) {
     is_trimming = false;
     is_enabled = false;
     
+    // Create the menu
+    // XPLMMenuID plugins = XPLMFindPluginsMenu();
+    
     return 1;
 }
 
@@ -173,10 +256,20 @@ PLUGIN_API void	XPluginStop(void) {
 PLUGIN_API int XPluginEnable(void) {
     is_enabled = true;
     logMsg("enabled");
+    menu.id = XPLMCreateMenu("TrimHat", NULL, 0, handle_menu, NULL);
+    menu.item_rev = XPLMAppendMenuItem(menu.id,
+        "Reverse (shift for view pan)",(void *)MENU_REVERSE, 0);
+        
+    if(!load()) {
+        save();
+    }
+    update_reverse();
 	return 1;
 }
 
 PLUGIN_API void XPluginDisable(void) {
+    XPLMClearAllMenuItems(menu.id);
+    XPLMDestroyMenu(menu.id);
     is_enabled = false;
     logMsg("disabled");
 }

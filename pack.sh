@@ -66,11 +66,11 @@ function pack {
     TARGET="$1"
     GIT_REV=$(git describe --tags --always)
     BUILD_ID="$(date +"%m%d")-$GIT_REV"
-    BUILD_ZIP="htrack-$BUILD_ID.zip"
+    BUILD_ZIP="$TARGET-$BUILD_ID.zip"
     
     if [[ "$(uname)" == "Darwin" ]]; then
         sign "$TARGET"
-        # notarize "$TARGET"
+        notarize "$TARGET"
     fi
     
     echo "Packaging"
